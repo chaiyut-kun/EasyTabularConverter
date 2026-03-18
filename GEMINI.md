@@ -23,7 +23,7 @@ there are less function but can show concept and how this project work
 - Always run `npm run test` after you finished your tasks and fix any errors
 
 # Coming Features
-- [x] Convert from `Text` to any data format of this project use whitespaces as delimiter such as
+- [x] 1. Convert from `Text` to any data format of this project use whitespaces as delimiter such as
 ```input
 Name	Title
 Ross Gellar	Paleontologist

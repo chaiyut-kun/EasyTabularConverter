@@ -54,4 +54,10 @@ describe('convertData', () => {
     const result = convertData(csv, 'CSV', 'Text');
     expect(result).toBe('Name\tTitle\nRoss\tPaleontologist');
   });
+
+  it('should have a placeholder for SQL Insert Script', () => {
+    const csv = 'Name,Title\nRoss,Paleontologist';
+    const result = convertData(csv, 'CSV', 'SQL Insert');
+    expect(result).toContain('[Mock] SQL Insert Script is coming soon!');
+  });
 });

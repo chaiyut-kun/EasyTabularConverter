@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { convertData, DataFormat } from './utils/converter';
 
-const formats: DataFormat[] = ['CSV', 'Excel', 'JSON Array', 'HTML Table', 'Text'];
+const formats: DataFormat[] = ['CSV', 'Excel', 'JSON Array', 'HTML Table', 'Text', 'SQL Insert'];
 
 export default function App() {
   const [inputData, setInputData] = useState<string>('');

@@ -1,4 +1,4 @@
-export type DataFormat = 'CSV' | 'Excel' | 'JSON Array' | 'HTML Table' | 'Text';
+export type DataFormat = 'CSV' | 'Excel' | 'JSON Array' | 'HTML Table' | 'Text' | 'SQL Insert';
 
 export const convertData = (data: string, from: DataFormat, to: DataFormat): string => {
   if (!data.trim()) return '';
@@ -94,6 +94,9 @@ export const convertData = (data: string, from: DataFormat, to: DataFormat): str
         })
       ];
       return textLines.join('\n');
+    } else if (to === 'SQL Insert') {
+      // TODO: Implement actual SQL Insert formatting logic (prototype)
+      return `-- [Mock] SQL Insert Script is coming soon!\n-- Format: INSERT INTO table_name (cols) VALUES (vals);`;
     } else {
       return `[Mock] Output format ${to} not fully implemented.`;
     }
