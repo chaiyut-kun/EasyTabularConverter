@@ -60,4 +60,15 @@ describe('convertData', () => {
     const result = convertData(csv, 'CSV', 'SQL Insert');
     expect(result).toBe("INSERT INTO `User` (`Name`,`Title`) VALUES\n('Ross','Paleontologist');");
   });
+
+  it('should convert CSV to Markdown Table', () => {
+    const csv = 'Name,Title\nRoss Gellar,Paleontologist\nMonica Gellar,Chef';
+    const result = convertData(csv, 'CSV', 'Markdown Table');
+    const expected = 
+`| Name          | Title          |
+|---------------|----------------|
+| Ross Gellar   | Paleontologist |
+| Monica Gellar | Chef           |`;
+    expect(result).toBe(expected);
+  });
 });

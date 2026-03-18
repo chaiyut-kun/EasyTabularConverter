@@ -53,3 +53,20 @@ INSERT INTO `Employees` (`Name`,`Title`) VALUES
 ('Monica Gellar','Chef'),
 ('Phoebe Buffay','Musician');
 ```
+
+- [x] 3. Convert from `any source` to Markdown Table
+**Example**
+```input
+Name,Title
+Ross Gellar,Paleontologist
+Monica Gellar,Chef
+Phoebe Buffay,Musician
+```
+
+```output
+| Name          | Title          |
+|---------------|----------------|
+| Ross Gellar   | Paleontologist |
+| Monica Gellar | Chef           |
+| Phoebe Buffay | Musician       |
+```

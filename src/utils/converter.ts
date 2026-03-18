@@ -1,4 +1,4 @@
-export type DataFormat = 'CSV' | 'Excel' | 'JSON Array' | 'HTML Table' | 'Text' | 'SQL Insert';
+export type DataFormat = 'CSV' | 'Excel' | 'JSON Array' | 'HTML Table' | 'Text' | 'SQL Insert' | 'Markdown Table';
 
 export const convertData = (data: string, from: DataFormat, to: DataFormat): string => {
   if (!data.trim()) return '';
@@ -106,6 +106,29 @@ export const convertData = (data: string, from: DataFormat, to: DataFormat): str
         return `(${rowValues})`;
       }).join(',\n');
       return `INSERT INTO \`${tableName}\` (${escapedHeaders}) VALUES\n${values};`;
+    } else if (to === 'Markdown Table') {
+      if (parsedData.length === 0) return '';
+      
+      // Calculate max width for each column
+      const colWidths: Record<string, number> = {};
+      headers.forEach(h => {
+        let max = h.length;
+        parsedData.forEach(row => {
+          const val = String(row[h] || '');
+          if (val.length > max) max = val.length;
+        });
+        colWidths[h] = max;
+      });
+
+      const pad = (str: string, width: number) => str + ' '.repeat(Math.max(0, width - str.length));
+
+      const headerRow = `| ${headers.map(h => pad(h, colWidths[h])).join(' | ')} |`;
+      const separatorRow = `| ${headers.map(h => '-'.repeat(colWidths[h])).join(' | ')} |`;
+      const dataRows = parsedData.map(row => 
+        `| ${headers.map(h => pad(String(row[h] || ''), colWidths[h])).join(' | ')} |`
+      ).join('\n');
+
+      return `${headerRow}\n${separatorRow}\n${dataRows}`;
     } else {
       return `[Mock] Output format ${to} not fully implemented.`;
     }
