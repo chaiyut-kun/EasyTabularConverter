@@ -21,3 +21,35 @@ there are less function but can show concept and how this project work
 - Always add a relevant test case when fixing a bug, refactoring or creating a new feature
 - Always run `npm run lint` after you finished your tasks and fix any errors
 - Always run `npm run test` after you finished your tasks and fix any errors
+
+# Coming Features
+- [x] Convert from `Text` to any data format of this project use whitespaces as delimiter such as
+```input
+Name	Title
+Ross Gellar	Paleontologist
+Monica Gellar	Chef
+Phoebe Buffay	Musician
+```
+
+```output
+Name,Title
+Ross,Gellar,Paleontologist
+Monica,Gellar,Chef
+Phoebe,Buffay,Musician
+```
+
+- [ ] Convert from `any source' to any SQL Insert Script
+**Example**
+```input
+Name	Title
+Ross Gellar	Paleontologist
+Monica Gellar	Chef
+Phoebe Buffay	Musician
+```
+
+```output
+INSERT INTO `Employees` (`Name`,`Title`) VALUES
+('Ross Gellar','Paleontologist'),
+('Monica Gellar','Chef'),
+('Phoebe Buffay','Musician');
+```

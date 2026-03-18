@@ -37,4 +37,21 @@ describe('convertData', () => {
     const result = convertData('{ invalid }', 'JSON Array', 'CSV');
     expect(result).toContain('Error:');
   });
+
+  it('should convert Text (whitespace delimited) to CSV', () => {
+    const text = 'Name\tTitle\nRoss Gellar\tPaleontologist\nMonica Gellar\tChef\nPhoebe Buffay\tMusician';
+    const result = convertData(text, 'Text', 'CSV');
+    // Based on GEMINI.md example:
+    // Name,Title
+    // Ross,Gellar,Paleontologist
+    // Monica,Gellar,Chef
+    // Phoebe,Buffay,Musician
+    expect(result).toBe('Name,Title\nRoss,Gellar,Paleontologist\nMonica,Gellar,Chef\nPhoebe,Buffay,Musician');
+  });
+
+  it('should convert CSV to Text (whitespace delimited)', () => {
+    const csv = 'Name,Title\nRoss,Paleontologist';
+    const result = convertData(csv, 'CSV', 'Text');
+    expect(result).toBe('Name\tTitle\nRoss\tPaleontologist');
+  });
 });
