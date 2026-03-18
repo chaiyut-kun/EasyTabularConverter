@@ -55,9 +55,9 @@ describe('convertData', () => {
     expect(result).toBe('Name\tTitle\nRoss\tPaleontologist');
   });
 
-  it('should have a placeholder for SQL Insert Script', () => {
+  it('should convert CSV to SQL Insert Script', () => {
     const csv = 'Name,Title\nRoss,Paleontologist';
     const result = convertData(csv, 'CSV', 'SQL Insert');
-    expect(result).toContain('[Mock] SQL Insert Script is coming soon!');
+    expect(result).toBe("INSERT INTO `User` (`Name`,`Title`) VALUES\n('Ross','Paleontologist');");
   });
 });

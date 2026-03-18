@@ -95,8 +95,17 @@ export const convertData = (data: string, from: DataFormat, to: DataFormat): str
       ];
       return textLines.join('\n');
     } else if (to === 'SQL Insert') {
-      // TODO: Implement actual SQL Insert formatting logic (prototype)
-      return `-- [Mock] SQL Insert Script is coming soon!\n-- Format: INSERT INTO table_name (cols) VALUES (vals);`;
+      if (parsedData.length === 0) return '';
+      const tableName = 'User';
+      const escapedHeaders = headers.map(h => `\`${h}\``).join(',');
+      const values = parsedData.map(row => {
+        const rowValues = headers.map(h => {
+          const val = row[h] || '';
+          return `'${val.replace(/'/g, "''")}'`;
+        }).join(',');
+        return `(${rowValues})`;
+      }).join(',\n');
+      return `INSERT INTO \`${tableName}\` (${escapedHeaders}) VALUES\n${values};`;
     } else {
       return `[Mock] Output format ${to} not fully implemented.`;
     }

@@ -38,7 +38,7 @@ Monica,Gellar,Chef
 Phoebe,Buffay,Musician
 ```
 
-- [ ] Convert from `any source' to any SQL Insert Script
+- [x] 2. Convert from `any source` to any SQL Insert Script
 **Example**
 ```input
 Name	Title
